@@ -693,26 +693,6 @@ stock Container:CreateMenuTDs()
     TextDrawSetProportional(Container:GetContainerMenuTDID(CONTAINER_CLOSE_MENU_TEXTDRAW_ID), 1);
     TextDrawSetShadow(Container:GetContainerMenuTDID(CONTAINER_CLOSE_MENU_TEXTDRAW_ID), 0);
     TextDrawSetSelectable(Container:GetContainerMenuTDID(CONTAINER_CLOSE_MENU_TEXTDRAW_ID), true);
-
-    Container:SetContainerMenuTDID(8, TextDrawCreate(345.5000, 189.5334, "LD_BEAT:down"));
-    TextDrawTextSize(Container:GetContainerMenuTDID(8), 9.0000, 11.0000);
-    TextDrawAlignment(Container:GetContainerMenuTDID(8), 1);
-    TextDrawColor(Container:GetContainerMenuTDID(8), -1);
-    TextDrawBackgroundColor(Container:GetContainerMenuTDID(8), 255);
-    TextDrawFont(Container:GetContainerMenuTDID(8), 4);
-    TextDrawSetProportional(Container:GetContainerMenuTDID(8), 0);
-    TextDrawSetShadow(Container:GetContainerMenuTDID(8), 0);
-    TextDrawSetSelectable(Container:GetContainerMenuTDID(8), true);
-
-    Container:SetContainerMenuTDID(9, TextDrawCreate(345.5000, 176.4667, "LD_BEAT:up"));
-    TextDrawTextSize(Container:GetContainerMenuTDID(9), 9.0000, 11.0000);
-    TextDrawAlignment(Container:GetContainerMenuTDID(9), 1);
-    TextDrawColor(Container:GetContainerMenuTDID(9), -1);
-    TextDrawBackgroundColor(Container:GetContainerMenuTDID(9), 255);
-    TextDrawFont(Container:GetContainerMenuTDID(9), 4);
-    TextDrawSetProportional(Container:GetContainerMenuTDID(9), 0);
-    TextDrawSetShadow(Container:GetContainerMenuTDID(9), 0);
-    TextDrawSetSelectable(Container:GetContainerMenuTDID(9), true);
 }
 
 stock Container:CreateMenuNicknamesTDs(container_index)

@@ -100,6 +100,6 @@ new Iterator:CreatedContainerData<MAX_CONTAINERS>;
 new Iterator:ContainerBiddersIter[MAX_CONTAINERS]<MAX_PLAYERS>;
 
 //
-new Text:ContainerMenuTD[10];
+new Text:ContainerMenuTD[8];
 new Text:ContainerMenuNickNamesTD[MAX_CONTAINERS][MAX_VISIBLE_CONTAINER_PARTICIPANTS];
 new Text:ContainerWonTD[4];
