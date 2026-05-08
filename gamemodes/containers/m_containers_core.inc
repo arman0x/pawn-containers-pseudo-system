@@ -424,7 +424,7 @@ stock Container:SendGlobalMessage(E_CONTAINER_CLIENT_MESSAGE:messageType)
     {
         case CC_SYSTEM_ERROR:
         {
-            return print("System error in global message sending");
+            return print("[Containers]: System error in global message sending");
         }
         case CC_CONTAINERS_BIDDING_STARTED:
         {
@@ -436,7 +436,7 @@ stock Container:SendGlobalMessage(E_CONTAINER_CLIENT_MESSAGE:messageType)
         }
         default:
         {
-            return print("Unknown error in global message sending");
+            return print("[Containers]: Unknown error in global message sending");
         }
     }
 

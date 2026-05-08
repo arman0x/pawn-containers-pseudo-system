@@ -29,7 +29,7 @@ public OnPlayerEnterDynamicArea(playerid, STREAMER_TAG_AREA:areaid)
     new container_index = Container:GetIndexFromAreaID(areaid);
 
     #if defined CONTAINERS_DEBUG_MODE
-        printf("[Container]: player %d, container_index %d, is valid %d", 
+        printf("[Containers]: player %d, container_index %d, is valid %d", 
         playerid, container_index, Container:IsValidIndex(container_index));
     #endif
 

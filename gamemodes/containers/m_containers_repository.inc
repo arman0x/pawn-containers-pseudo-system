@@ -6,13 +6,13 @@ public Container:LoadDataFromDatabase()
 
     if(rowCount == 0)
     {
-        print(!"No container data found in database");
+        print("[Containers]: No container data found in database");
         return false;
     }
 
     if(rowCount > MAX_CONTAINERS)
     {
-        printf(!"Too many containers in database. Max allowed is: %d", MAX_CONTAINERS);
+        printf("[Containers]: Too many containers in database. Max allowed is: %d", MAX_CONTAINERS);
         return false;
     }
 
@@ -148,8 +148,9 @@ public bool:Container:LoadPlrBidDataFromDatabase(playerid)
 
         if(containerIndex < 0)
         {
-            printf("LoadPlrBidDataFromDatabase error, containerIndex: %d",containerIndex);
+            printf("[Containers]: LoadPlrBidDataFromDatabase error, containerIndex: %d",containerIndex);
         }
+
         Container:SetPlayerBid(containerIndex, playerid, totalBid);
         Container:IncrementBidders(playerid, containerIndex);
     }
@@ -219,7 +220,7 @@ public bool:Container:LoadWinnersDataFromDB()
 
         if(containerID < 1 || containerID > createdContainersCount)
         {
-            print("Invalid container ID found in winners fetching");
+            print("[Containers]: Invalid container ID found in winners fetching");
             continue;
         }
 
