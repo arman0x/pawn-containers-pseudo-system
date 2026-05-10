@@ -143,14 +143,14 @@ stock Container:SetPlayerBid(container_index, playerid, bidAmount)
     ContainerData[container_index][CONTAINER_PLACED_BID_PLAYERS][playerid] = bidAmount;
 }
 
-stock Float:Container:GetMinimalBid(container_index)
+stock Container:GetMinimalBid(container_index)
 {
-    return Container:GetStartPrice(container_index) * CONTAINER_MINIMAL_BID_MULTIPLIER;
+    return floatround(Container:GetStartPrice(container_index) * CONTAINER_MINIMAL_BID_MULTIPLIER);
 }
 
-stock Float:Container:GetMaximalBid(container_index)
+stock Container:GetMaximalBid(container_index)
 {
-    return Container:GetStartPrice(container_index) * CONTAINER_MAXIMAL_BID_MULTIPLIER;
+    return floatround(Container:GetStartPrice(container_index) * CONTAINER_MAXIMAL_BID_MULTIPLIER);
 }
 
 stock bool:Container:IsValidIndex(container_index)
@@ -218,11 +218,16 @@ stock Container:GetWonMenuTDCount()
     return sizeof(ContainerWonTD);
 }
 
+stock Container:GetBidPercent(bid_amount, total_bid)
+{
+    return bid_amount * 100 / total_bid;
+}
+
 stock Container:ResetPlayersBid(container_index)
 {
     for(new i = 0; i < MAX_PLAYERS; i++)
     {
-        ContainerData[container_index][CONTAINER_PLACED_BID_PLAYERS][i] = 0;
+        Container:SetPlayerBid(container_index, i, 0);
     }
 }
 
@@ -451,14 +456,12 @@ stock Container:ShowBidDialogForPlayer(playerid, container_index)
         Минимальная ставка: $%d\n\
         Максимальная ставка: $%d", 
         Container:GetTotalBid(container_index), 
-        floatround(Container:GetMinimalBid(container_index)),
-        floatround(Container:GetMaximalBid(container_index))
+        Container:GetMinimalBid(container_index),
+        Container:GetMaximalBid(container_index)
     );
 
     ShowPlayerDialog(playerid, DIALOG_CONTAINER_BID, DIALOG_STYLE_INPUT, !"Укажите ставку:", currentBid, !"Подтвердить", !"Отмена");
 }
-
-forward Text:Container:GetContainerMenuNicksTDID(container_index, textdraw_index);
 
 stock Container:RefreshTopBiddersTD(container_index)
 {
@@ -496,7 +499,7 @@ stock Container:RefreshTopBiddersTD(container_index)
         {
             new string[64], 
                 playerID = topIds[i], 
-                percent = topBids[i] * 100 / containerTotalBid,
+                percent = Container:GetBidPercent(topBids[i], containerTotalBid),
                 _playerName[MAX_PLAYER_NAME];
     
             Player:GetPlayerNameByID(playerID, _playerName);
@@ -506,7 +509,7 @@ stock Container:RefreshTopBiddersTD(container_index)
         }
         else
         {
-            TextDrawSetString(Container:GetContainerMenuNicksTDID(container_index, i), "None");
+            TextDrawSetString(Container:GetContainerMenuNicksTDID(container_index, i), CONTAINER_EMPTY_BIDDER_LABEL);
         }
     }
 }
@@ -515,7 +518,7 @@ stock Container:ClearTopBiddersTD(container_index)
 {
     for(new i = 0; i < MAX_VISIBLE_CONTAINER_PARTICIPANTS; i++)
     {
-        TextDrawSetString(Container:GetContainerMenuNicksTDID(container_index, i), "None");
+        TextDrawSetString(Container:GetContainerMenuNicksTDID(container_index, i), CONTAINER_EMPTY_BIDDER_LABEL);
     }
 }
 
@@ -525,7 +528,7 @@ stock Container:ClearAllTopBiddersTD()
     {
         for(new i = 0; i < MAX_VISIBLE_CONTAINER_PARTICIPANTS; i++)
         {
-            TextDrawSetString(Container:GetContainerMenuNicksTDID(container_index, i), "None");
+            TextDrawSetString(Container:GetContainerMenuNicksTDID(container_index, i), CONTAINER_EMPTY_BIDDER_LABEL);
         }
     }
 }
@@ -699,7 +702,7 @@ stock Container:CreateMenuNicknamesTDs(container_index)
 {
     for(new i = 0; i < MAX_VISIBLE_CONTAINER_PARTICIPANTS; i++)
     {
-        Container:SetContainerMenuNicksTDID(container_index, i, TextDrawCreate(308.2500, 158.2600 + (i * 11.8), "None"));
+        Container:SetContainerMenuNicksTDID(container_index, i, TextDrawCreate(308.2500, 158.2600 + (i * 11.8), CONTAINER_EMPTY_BIDDER_LABEL));
         TextDrawLetterSize(Container:GetContainerMenuNicksTDID(container_index, i), 0.2222, 1.2733);
         TextDrawAlignment(Container:GetContainerMenuNicksTDID(container_index, i), 2);
         TextDrawColor(Container:GetContainerMenuNicksTDID(container_index, i), -1);

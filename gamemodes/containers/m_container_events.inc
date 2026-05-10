@@ -211,6 +211,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 public OnPlayerDisconnect(playerid, reason)
 {
+    Container:SetPlayerMenuContainerIDx(playerid, INVALID_CONTAINER_ID);
+    
     foreach(new container_index : CreatedContainerData)
     {
         if(Container:IsPlayerAlreadySetBid(container_index, playerid))

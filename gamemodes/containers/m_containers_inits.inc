@@ -15,11 +15,12 @@
 #define DIALOG_CONTAINER_BID                                    1
 #define CONTAINER_SELECT_TEXTDRAW_HEX_COLOR                     0xAFAFAFAA
 #define CONTAINER_INTERACTION_Y_COORD_OFFSET                    4.0
+#define CONTAINER_EMPTY_BIDDER_LABEL                            "None"
 //        
-#define CONTAINER_SET_BID_TEXTDRAW_ID                                     6
-#define CONTAINER_CLOSE_MENU_TEXTDRAW_ID                                  7
-#define CONTAINER_PREVIEW_MODEL_TEXTDRAW_ID                               2
-#define CONTAINER_CLOSE_WON_MENU_TEXTDRAW_ID                              3
+#define CONTAINER_SET_BID_TEXTDRAW_ID                           6
+#define CONTAINER_CLOSE_MENU_TEXTDRAW_ID                        7
+#define CONTAINER_PREVIEW_MODEL_TEXTDRAW_ID                     2
+#define CONTAINER_CLOSE_WON_MENU_TEXTDRAW_ID                    3
 //     
 #define CONTAINERS_TABLE_NAME                                   "containers"
 #define CONTAINERS_COLUMN_ID                                    "id"
@@ -92,7 +93,7 @@ enum E_CONTAINER_DATA
 //
 new ContainerData[MAX_CONTAINERS][E_CONTAINER_DATA];
 new bool:ContainersBiddingStatus = false;
-new playerOpenedMenuContainerIndex[MAX_PLAYERS];
+new playerOpenedMenuContainerIndex[MAX_PLAYERS] = {INVALID_CONTAINER_ID, ...};
 new pendingPrizeFetches;
 
 //
